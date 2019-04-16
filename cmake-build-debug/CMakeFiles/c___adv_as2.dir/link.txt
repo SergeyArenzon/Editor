@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/c___adv_as2.dir/Document.cpp.o CMakeFiles/c___adv_as2.dir/Editor.cpp.o  -o c___adv_as2 
