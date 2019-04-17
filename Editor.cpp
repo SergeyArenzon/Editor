@@ -1,8 +1,8 @@
 //
-// Created by sergey on 4/15/19.
+// Created by Sergey Arenzon 321211286 on 4/15/19.
 //
 
-#include "Editor.hpp"
+#include "Editor.h"
 
 #include <iostream>
 #include <sstream>
@@ -98,10 +98,7 @@ void Editor::loop() {
                 doc.replace(oldStr,newStr);
             }
         }
-
         else if(input.find("q")) stop = true;
-
-
         else cout<<"?"<<endl;
     }
    return;

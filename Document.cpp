@@ -1,9 +1,9 @@
 //
-// Created by sergey on 4/15/19.
+// Created by Sergey Arenzon 321211286 on 4/15/19.
 //
 
 #include <iostream>
-#include "Document.hpp"
+#include "Document.h"
 using namespace std;
 void token(string& line,string input,string newWord){
 
@@ -44,6 +44,7 @@ void Document::n()const {
 }
 void Document::percentP() {
     for (vector<string>::iterator it = lines.begin() ; it != lines.end(); ++it)
+
         cout << *it<<endl;
     }
 void Document::changeCurrLine(int lineNumber) {
@@ -84,7 +85,7 @@ void Document::replace(string oldStr,string newStr) {
 }
 void Document::Q() {
 
-    
+
 
 }
 
