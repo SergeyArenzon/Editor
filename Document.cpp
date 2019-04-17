@@ -5,7 +5,33 @@
 #include <iostream>
 #include "Document.hpp"
 using namespace std;
+void token(string& line,string input,string newWord){
 
+
+    size_t from = line.find(input);
+    size_t to=from+input.size();
+    std::vector<char> chars(line.c_str(), line.c_str() + line.size() + 1u);
+
+    string newLine="";
+    int i=0;
+    while(i<from){
+        newLine=newLine+line.at(i);
+        i++;
+    }
+    newLine=newLine+newWord;
+    i=to;
+    while(i<line.size()){
+        newLine=newLine+line.at(i);
+        i++;
+
+
+    }
+
+
+    line=newLine;
+
+
+}
 Document::Document(){
     currLine=1;
     lines=vector <string>();
@@ -14,7 +40,7 @@ void Document::p()const{
     cout<<lines.at(currLine-2)<<endl;
 }
 void Document::n()const {
-    cout<<currLine-1<<"   "<<lines.at(currLine-2)<<endl;
+    cout<<currLine-1<<"     "<<lines.at(currLine-2)<<endl;
 }
 void Document::percentP() {
     for (vector<string>::iterator it = lines.begin() ; it != lines.end(); ++it)
@@ -41,8 +67,25 @@ void Document::d(){
     lines.erase(lines.begin()+currLine-2);
 }
 void Document::text(string text) {
-    for (vector<string>::iterator it = lines.begin()+currLine-1 ; it != lines.end(); ++it)
-        cout << *it<<endl;
+
+    int counter=1;
+    for (vector<string>::iterator it = lines.begin() ; it != lines.begin()+currLine ; ++it){
+       if((*it).find(text)!= std::string::npos) {
+           cout<<*it<<endl;
+           currLine=counter+1;
+           break;
+       }
+       counter++;
+    }
+
+}
+void Document::replace(string oldStr,string newStr) {
+    token(lines.at(currLine-2),oldStr,newStr);
+}
+void Document::Q() {
+
+    
+
 }
 
 

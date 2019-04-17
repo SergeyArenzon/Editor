@@ -6,6 +6,9 @@
 
 #include <iostream>
 #include <sstream>
+#include <cstring>
+
+
 int checkIfInt(string input){
 
     std::istringstream s(input);
@@ -15,6 +18,23 @@ int checkIfInt(string input){
     }
     return x;
 }
+
+
+vector<string> splitHelper(string input){
+
+    std::stringstream test(input);
+    std::string segment;
+    std::vector<std::string> seglist;
+
+    while(std::getline(test, segment, '/'))
+    {
+        seglist.push_back(segment);
+    }
+
+    return seglist;
+
+}
+
 Editor::Editor(){
      doc=Document();
 }
@@ -34,11 +54,8 @@ void Editor::loop() {
                 else {
                     if(counter==0) doc.c(input);
                     else doc.a(input);
-
                 }
-
                 counter++;
-
             }
             dotPressed=false;
         }
@@ -52,7 +69,6 @@ void Editor::loop() {
              if(input.compare(".")==0){
                  dotPressed=true;
              }   else doc.a(input);
-
           }
             dotPressed=false;
         }
@@ -67,15 +83,29 @@ void Editor::loop() {
             dotPressed=false;
         }
         else if(input.compare("d") == 0) doc.d();
+        else if (input.find("/") == 0) {
+           input.erase(0, 1);
+           doc.text(input);
+        }
+        else if (input.find("s/") == 0) {
+            input.erase(0, 2);
+            vector <string>v = splitHelper(input);
+            if(v.size()>2){
+                cout<<"?"<<endl;
+            }else{
+                string oldStr = v.at(0);
+                string newStr = v.at(1);
+                doc.replace(oldStr,newStr);
+            }
+        }
 
+        else if(input.find("q")) stop = true;
+
+
+        else cout<<"?"<<endl;
     }
+   return;
 }
 
 
 
-int main(){
-    Editor e;
-    e.loop();
-
-    return 0;
-}

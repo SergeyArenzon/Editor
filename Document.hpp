@@ -26,4 +26,6 @@ public:
     void c(string line);//insert txt to curr line
     void d();//deletes curr line
     void text(string text);
+    void replace(string oldStr,string newStr);
+    void Q();
 };
